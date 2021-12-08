@@ -5,30 +5,22 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject scoreText;
-    private int score;
-
+    public static int scoreValue = 0;
+    private Text score;
     public GameObject winText;
-    public GameObject target;
 
-    void Start()
+    public void Start()
     {
-        score = 0;
+        score = GetComponent<Text>();
     }
 
-    void Update()
+    public void Update()
     {
-        scoreText.GetComponent<Text>().text = ("Score: "+ score);
+        score.Text = "Score: " + scoreValue;
 
-        if(Input.GetMouseButtonDown(0)) 
+        if (scoreValue == 10)
         {
-            score += 1;
-            DestroyImmediate(target, true);
-        }
-        if (score == 10)
-        {
-            winText.SetActive(true);
+            winText.gameObject.Setactive = true;
         }
     }
 }
